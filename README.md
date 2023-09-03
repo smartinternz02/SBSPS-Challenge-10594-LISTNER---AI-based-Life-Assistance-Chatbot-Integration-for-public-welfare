@@ -1,11 +1,11 @@
 # SBSPS-Challenge-10594-LISTNER---AI-based-Life-Assistance-Chatbot-Integration-for-public-welfare
-LISTNER - AI-based Life Assistance Chatbot Integration for public welfare
+👂LISTNER - AI-based Life Assistance Chatbot Integration for public welfare
  </br>
-Team Name:  ThunderBolt
+🌩️Team Name:  ThunderBolt
  </br>
-Team Size:  1
- </br>
-Business Challenge:  LISTNER - AI-based Life Assistance Chatbot Integration for public welfare
+👥 Team Size:  1
+ </br></br>
+🧠Business Challenge:  LISTNER - AI-based Life Assistance Chatbot Integration for public welfare
  </br>
 General Description: </br>
 Quote: Ask for help, NOT because you are weak. BUT because you want to remain strong...
