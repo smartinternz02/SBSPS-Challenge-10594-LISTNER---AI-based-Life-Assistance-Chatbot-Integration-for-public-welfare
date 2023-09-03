@@ -1,3 +1,24 @@
+const dropdownButton = document.getElementById('dropdownButton');
+const dropdownContent = document.getElementById('dropdownContent');
+
+dropdownButton.addEventListener('click', () => {
+  dropdownContent.classList.toggle('show-dropdown');
+});
+
+// Store the selected language in user_lang variable
+let user_lang = '';
+
+const dropdownOptions = document.querySelectorAll('.dropdown-option');
+dropdownOptions.forEach(option => {
+  option.addEventListener('click', () => {
+    user_lang = option.getAttribute('data-lang');
+    dropdownButton.textContent = user_lang;
+    dropdownContent.classList.remove('show-dropdown');
+  });
+});
+
+
+
 const musicToggle = document.getElementById('music-toggle');
 const backgroundMusic = document.getElementById('background-music');
 
@@ -219,6 +240,68 @@ const generateResponse = async(chatElement) => {
                     console.log("Web Speech API is not supported in this browser.");
                 }
             });
+          const languageIcon = document.createElement("span");
+            languageIcon.id = "Language";
+            languageIcon.classList.add("material-symbols-outlined");
+            languageIcon.textContent = "translate"; // Icon for translation
+            chatElement.appendChild(languageIcon); 
+// -----------------------------------------------------------------------------
+            
+              languageIcon.addEventListener("click", () => {
+                  translateToLaguage(chatResponse);
+              });
+              async function translateToLaguage(textToTranslate) {
+                const API_KEY = "YOUR_KEY"; // Replace with your OpenAI API key
+                const API_URL = "https://api.openai.com/v1/engines/text-davinci-002/completions";
+              
+                try {
+                  const response = await fetch(API_URL, {
+                    method: "POST",
+                    headers: {
+                      Authorization: `Bearer ${API_KEY}`,
+                      "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                      prompt: `Translate this text to ${user_lang} Perfectly as short as possible: ${textToTranslate}`,
+                      max_tokens: 2000, 
+                    }),
+                  });
+              
+                  if (response.ok) {
+                    const data = await response.json();
+                    const translation = data.choices[0].text;
+                    displayTranslation(translation);
+                  } else {
+                    console.error("Error translating text.");
+                  }
+                } catch (error) {
+                  console.error("Error translating text:", error);
+                }
+              }
+
+              function displayTranslation(translation) {
+                const chatResponse = `${translation.trim()}`;
+                messageElement.textContent = chatResponse;
+              }
+
+languageIcon.addEventListener("click", async () => {
+  const translatedText = await translateToLaguage(chatResponse);
+
+  if (translatedText) {
+    displayTranslation(translatedText, messageElement);
+    speakTranslatedText(translatedText);
+  }
+});
+
+function speakTranslatedText(translatedText) {
+  if ('speechSynthesis' in window) {
+    const synth = window.speechSynthesis;
+    const utterance = new SpeechSynthesisUtterance(translatedText);
+    synth.speak(utterance);
+  } else {
+    console.log("Web Speech API is not supported in this browser.");
+  }
+}
         })
         .catch(() => {
             messageElement.classList.add("error");
