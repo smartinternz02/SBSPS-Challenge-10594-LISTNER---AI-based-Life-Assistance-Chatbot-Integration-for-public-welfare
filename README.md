@@ -7,8 +7,7 @@
  </br>
 🧠Business Challenge:  LISTNER - AI-based Life Assistance Chatbot Integration for public welfare
  </br></br>
-🔍
-# General Description:
+🔍**##General Description:##**
 </br></br>
 Quote: Ask for help, NOT because you are weak. BUT because you want to remain strong...
  </br>🤝There are many people who need assistance and support in various areas like Domestic Violence, Mental Health Counselling, Good Career Guidance and even Emergencies… Because these are some of the key areas where inter-people communication is not much preferred due to many reasons per say.
